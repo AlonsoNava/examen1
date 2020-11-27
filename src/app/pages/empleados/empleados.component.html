@@ -1,0 +1,68 @@
+<div class="container">
+  <hr>
+<input class="form-control mr-sm-2" type="search" name="filtrarNombre" [(ngModel)]="filtrarNombre" placeholder="Buscar..." aria-label="Search">
+<hr>
+</div>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col col-lg-2">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Last_name</th>
+        <th scope="col">Birthday</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let datos of empleados | buscar: filtrarNombre | paginate: { itemsPerPage: 10, currentPage: p }">
+        <th scope="row">{{ datos.id }}</th>
+        <td>{{ datos.name }}</td>
+        <td>{{ datos.last_name }}</td>
+        <td>{{ datos.birthday }}</td>
+      </tr>
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </tbody>
+  </table>
+
+  <div class="container">
+<form class="needs-validation" (ngSubmit)="guardar();" >
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationCustom01">Nombre</label>
+        <input type="text" class="form-control" maxlength="30" name="name" [(ngModel)]="emple.name" placeholder="nombre" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationCustom02">Apellidos</label>
+        <input type="text" class="form-control" maxlength="30" name="last_name" [(ngModel)]="emple.last_name" placeholder="apellidos" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationCustom03">Fecha de Nacimiento</label>
+        <input type="date" id="start" class="form-control"
+        value="emple.birthday"
+        name="birthday" [(ngModel)]="emple.birthday"
+        min="2018-01-01" max="2018-12-31">        
+        <div class="invalid-feedback">
+          Look good!
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationCustom02">ID</label>
+        <input type="text" class="form-control" name="id" [(ngModel)]="emple.id" required >
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+      </div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Agregar</button>
+  </form>
+  
+</div>

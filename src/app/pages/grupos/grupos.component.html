@@ -1,0 +1,45 @@
+<div class="container">
+    <hr>
+  <input class="form-control mr-sm-2" type="search" name="filtrarNombre" [(ngModel)]="filtrarNombre" placeholder="Buscar..." aria-label="Search">
+  <hr>
+</div>
+<div cdkDropListGroup>
+  <div class="example-container">
+    <h2>Grupo A</h2>
+    <div cdkDropList class="example-list" [cdkDropListData]="grupito" (cdkDropListDropped)="drop($event)" cdkDrag>
+    
+        <ngb-accordion #acc="ngbAccordion" *ngFor="let item of grupito; index as i" activeIds="ngb-panel-0" cdkDrag>
+          <ngb-panel  title="Grupo {{ i + 1 }}">
+            <ng-template ngbPanelContent>
+              <ul >
+                <li class="list-group-item"><input type="checkbox" > {{ item.name }}</li>
+              </ul>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+     </div>  
+  </div>
+  <div class="example-container">
+    <h2>Grupo B</h2>
+    
+    <div
+      cdkDropList
+      [cdkDropListData]="done"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)" cdkDrag>
+      <ngb-accordion #accc="ngbAccordion" [grupito]="item" *ngFor="let item of done; index as i" activeIds="ngb-panel-0" cdkDrag>
+        <ngb-panel  title="Grupo {{ i + 1 }}">
+          <ng-template ngbPanelContent>
+            <ul >
+              <li class="list-group-item"><input value={{item.name}} type="checkbox" checked="true" > {{ item.name }}</li>
+            </ul>
+          </ng-template>
+        </ngb-panel>
+      </ngb-accordion>
+    
+      
+    </div>
+    <button (empleadoSel)="imprimir($event);" class="btn btn-primary">Agregar</button>
+
+  </div>
+</div>
