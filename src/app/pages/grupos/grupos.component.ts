@@ -17,7 +17,7 @@ export class GruposComponent implements OnInit {
   
   cod:string = undefined;
   filtrarNombre: any = '';
-  grupo = '';
+  grupo: any = {};
   done = [
     
   ];

@@ -12,9 +12,9 @@ export class EmpleadosComponent  {
 
   forma: FormGroup;
   
-  emple: Empleado = new Empleado();
+  emple: any = {};
 
-  empleados: Empleado[] = [];
+  empleados: any = {};
   filtrarNombre: any = '';
   p: number = 1;
 
@@ -28,7 +28,7 @@ export class EmpleadosComponent  {
 
   cargar_empleadosg() {
     this.empleado.cargar_empleados()
-    .subscribe( (dataEmpleados: Empleado[]) => {
+    .subscribe( (dataEmpleados: any) => {
       this.empleados = dataEmpleados.data.employees;
       console.log(this.empleados);
     });
